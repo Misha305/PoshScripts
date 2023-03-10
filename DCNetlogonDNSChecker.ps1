@@ -18,7 +18,7 @@ function checkDcDnsEntries {
 
     Get-Content -Path $script:netlogondnsfile| ForEach-Object {
         $netlogondnsentry = $_.split('')[0]
-        $dnsrecord = Resolve-DnsName $netlogondnsentry -Type SRv | Where-Object {$_.name -Like $dcName}
+        $dnsrecord = Resolve-DnsName $netlogondnsentry -Type SRV | Where-Object {$_.name -Like $dcName}
         #$dnsrecord
         if ($dnsrecord) {Write-Output "$dcName still published in $netlogondnsentry, Entry times $($dnsrecord.count)"}
         #if ($dnsrecord) {Write-Output "$netlogondnsentry"}
